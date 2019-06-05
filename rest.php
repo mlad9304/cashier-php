@@ -8,6 +8,7 @@
 		protected $userId;
 
 		public function __construct() {
+			header("Access-Control-Allow-Origin: *");
 			if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 				$this->throwError(REQUEST_METHOD_NOT_VALID, 'Request Method is not valid.');
 			}
