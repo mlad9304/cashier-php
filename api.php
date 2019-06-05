@@ -8,7 +8,7 @@
 
 		public function login() {
 			$email = $this->validateParameter('email', $this->param['email'], STRING);
-			$pass = $this->validateParameter('pass', $this->param['pass'], STRING);
+			$password = $this->validateParameter('password', $this->param['password'], STRING);
 			try {
 				$stmt = $this->dbConn->prepare("SELECT * FROM users WHERE email = :email");
 				$stmt->bindParam(":email", $email);
@@ -17,7 +17,7 @@
 				if(!is_array($user)) {
 					$this->throwError(INVALID_USER_PASS, "Email or Password is incorrect.");
 				}
-				if(!password_verify($pass, $user['password'])) {
+				if(!password_verify($password, $user['password'])) {
 					$this->throwError(INVALID_USER_PASS, "Email or Password is incorrect.");
 				}
 
