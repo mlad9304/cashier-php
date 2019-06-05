@@ -15,10 +15,10 @@
 				$stmt->execute();
 				$user = $stmt->fetch(PDO::FETCH_ASSOC);
 				if(!is_array($user)) {
-					$this->returnResponse(INVALID_USER_PASS, "Email or Password is incorrect.");
+					$this->throwError(INVALID_USER_PASS, "Email or Password is incorrect.");
 				}
 				if(!password_verify($pass, $user['password'])) {
-					$this->returnResponse(INVALID_USER_PASS, "Email or Password is incorrect.1");
+					$this->throwError(INVALID_USER_PASS, "Email or Password is incorrect.");
 				}
 
 				$paylod = [
@@ -58,7 +58,7 @@
 			$user->setPassword($password);
 
 			if($user->checkExist($email)) {
-				$this->returnResponse(USER_EXIST, "User aleady exist.");
+				$this->throwError(USER_EXIST, "User aleady exist.");
 			}
 
 			if(!$user->insert()) {
