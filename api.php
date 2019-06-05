@@ -24,7 +24,7 @@
 				$paylod = [
 					'iat' => time(),
 					'iss' => 'localhost',
-					'exp' => time() + (15*60),
+					'exp' => time() + (7*24*60*60),
 					'userId' => $user['id']
 				];
 
