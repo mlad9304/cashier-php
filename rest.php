@@ -25,7 +25,7 @@
 
 		Public function validateRequest() {
 			if($_SERVER['CONTENT_TYPE'] !== 'application/json') {
-				$this->throwError(REQUEST_CONTENTTYPE_NOT_VALID, 'Request content type is not valid');
+				$this->throwError(REQUEST_CONTENTTYPE_NOT_VALID, $_SERVER);
 			}
 
 			$data = json_decode($this->request, true);
