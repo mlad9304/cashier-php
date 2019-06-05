@@ -75,6 +75,14 @@
 			$this->returnResponse(SUCCESS_RESPONSE, $message);
 		}
 
+		public function getAllUsers() {
+			$user = new User;
+			$data = [
+				'users' => $user->getAllUsers()
+			];
+			$this->returnResponse(SUCCESS_RESPONSE, $data);
+		}
+
 		public function addCustomer() {
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
