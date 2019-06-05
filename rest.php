@@ -114,7 +114,7 @@
 
 		public function returnResponse($code, $data) {
 			header("content-type: application/json");
-			$response = json_encode(['resonse' => ['status' => $code, "result" => $data]]);
+			$response = json_encode(['response' => ['status' => $code, "result" => $data]]);
 			echo $response; exit;
 		}
 
