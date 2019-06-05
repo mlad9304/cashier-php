@@ -64,7 +64,7 @@
 			if(!$user->insert()) {
 				$message = 'Failed to insert.';
 			} else {
-				$message = "Inserted successfully.";
+				$message = "Registered successfully.";
 			}
 
 			$this->returnResponse(SUCCESS_RESPONSE, $message);
