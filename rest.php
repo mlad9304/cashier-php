@@ -8,10 +8,9 @@
 		protected $userId;
 
 		public function __construct() {
-			// header("Access-Control-Allow-Origin: *");
-			// if($_SERVER['REQUEST_METHOD'] !== 'POST') {
-			// 	$this->throwError(REQUEST_METHOD_NOT_VALID, $_SERVER);
-			// }
+			if($_SERVER['REQUEST_METHOD'] !== 'POST') {
+				$this->throwError(REQUEST_METHOD_NOT_VALID, 'Request Method is not valid.');
+			}
 			$handler = fopen('php://input', 'r');
 			$this->request = stream_get_contents($handler);
 			$this->validateRequest();
@@ -25,9 +24,9 @@
 		}
 
 		Public function validateRequest() {
-			// if($_SERVER['CONTENT_TYPE'] !== 'application/json') {
-			// 	$this->throwError(REQUEST_CONTENTTYPE_NOT_VALID, 'Request content type is not valid');
-			// }
+			if($_SERVER['CONTENT_TYPE'] !== 'application/json') {
+				$this->throwError(REQUEST_CONTENTTYPE_NOT_VALID, 'Request content type is not valid');
+			}
 
 			$data = json_decode($this->request, true);
 
