@@ -30,7 +30,12 @@
 
 				$token = JWT::encode($paylod, SECRETE_KEY);
 				
-				$data = ['token' => $token];
+				$data = [
+					'token' => $token,
+					'name' => $user['name'],
+					'surname' => $user['surname'],
+					'email' => $user['email']
+				];
 				$this->returnResponse(SUCCESS_RESPONSE, $data);
 			} catch (Exception $e) {
 				$this->throwError(JWT_PROCESSING_ERROR, $e->getMessage());
