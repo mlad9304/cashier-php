@@ -47,7 +47,7 @@
 			$stmt = $this->dbConn->prepare("SELECT * FROM " . $this->tableName . " WHERE id = :id");
 			$stmt->bindParam(":id", $id);
 			$stmt->execute();
-			$user = $stmt->fetchOne(PDO::FETCH_ASSOC);
+			$user = $stmt->fetch(PDO::FETCH_ASSOC);
 			return $user;
 		}
 
