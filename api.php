@@ -85,6 +85,7 @@
 
 		public function getUser() {
 			$id = $this->validateParameter('id', $this->param['id'], INTEGER, false);
+			$user = new User;
 			$data = [
 				'user' => $user->getUser($id)
 			];
