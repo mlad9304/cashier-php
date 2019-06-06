@@ -83,6 +83,14 @@
 			$this->returnResponse(SUCCESS_RESPONSE, $data);
 		}
 
+		public function getUser() {
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER, false);
+			$data = [
+				'user' => $user->getUser($id)
+			];
+			$this->returnResponse(SUCCESS_RESPONSE, $data);
+		}
+
 		public function addCustomer() {
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);

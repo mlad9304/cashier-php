@@ -43,6 +43,14 @@
 			return $customers;
 		}
 
+		public function getUser($id) {
+			$stmt = $this->dbConn->prepare("SELECT * FROM " . $this->tableName . " WHERE id = :id");
+			$stmt->bindParam(":id", $id);
+			$stmt->execute();
+			$user = $stmt->fetchOne(PDO::FETCH_ASSOC);
+			return $user;
+		}
+
 		public function checkExist($email) {
 			$stmt = $this->dbConn->prepare("SELECT * FROM users WHERE email = :email");
 			$stmt->bindParam(":email", $email);
