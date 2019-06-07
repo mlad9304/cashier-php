@@ -157,7 +157,7 @@
 			$fixed_phone = $this->validateParameter('fixed_phone', $this->param['fixed_phone'], STRING, false);
 			$status = $this->validateParameter('status', $this->param['status'], STRING, false);
 			$comment = $this->validateParameter('comment', $this->param['comment'], STRING, false);
-			$create_date = $this->validateParameter('create_date', $this->param['create_date'], STRING, false);
+			$created_date = $this->validateParameter('created_date', $this->param['created_date'], STRING, false);
 
 			$cust = new Customer;
 			$cust->setName($name);
@@ -174,7 +174,7 @@
 			$cust->setFixedPhone($fixed_phone);
 			$cust->setStatus($status);
 			$cust->setComment($comment);
-			$cust->setCreateDate(date('Y-m-d'));
+			$cust->setCreatedDate(date('Y-m-d'));
 
 			$this->returnResponse(SUCCESS_RESPONSE, $cust);
 

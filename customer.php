@@ -87,8 +87,8 @@
 		public function insert() {
 			
 			$sql = 'INSERT INTO ' . $this->tableName . 
-			'(id, type, name, surname, func, social_reason, billing_address, delivery_address, zipcode, city, country, email, mobile_phone, fixed_phone, status, comment, create_date) VALUES '.
-			'(null, null, :name, :surname, :func, :social_reason, :billing_address, :delivery_address, :zipcode, :city, :country, :email, :mobile_phone, :fixed_phone, :status, :comment, :create_date)';
+			'(id, type, name, surname, func, social_reason, billing_address, delivery_address, zipcode, city, country, email, mobile_phone, fixed_phone, status, comment, created_date) VALUES '.
+			'(null, null, :name, :surname, :func, :social_reason, :billing_address, :delivery_address, :zipcode, :city, :country, :email, :mobile_phone, :fixed_phone, :status, :comment, :created_date)';
 
 			$stmt = $this->dbConn->prepare($sql);
 			$stmt->bindParam(':name', $this->name);
@@ -105,7 +105,7 @@
 			$stmt->bindParam(':fixed_phone', $this->fixed_phone);
 			$stmt->bindParam(':status', $this->status);
 			$stmt->bindParam(':comment', $this->comment);
-			$stmt->bindParam(':create_date', $this->create_date);
+			$stmt->bindParam(':created_date', $this->created_date);
 			
 			if($stmt->execute()) {
 				return true;
