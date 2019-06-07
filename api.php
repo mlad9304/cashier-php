@@ -121,6 +121,19 @@
 			$this->returnResponse(SUCCESS_RESPONSE, $message);
 		}
 
+		public function deleteUser() {
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER, false);
+			$user = new User;
+			$user->setId($id);
+			if(!$user->delete()) {
+				$message = 'Failed to delete.';
+			} else {
+				$message = "Deleted successfully.";
+			}
+
+			$this->returnResponse(SUCCESS_RESPONSE, $message);
+		}
+
 		public function addCustomer() {
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
