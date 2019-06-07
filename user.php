@@ -75,6 +75,7 @@
 			$stmt->bindParam(':phone', $this->phone);
 			$stmt->bindParam(':email', $this->email);
 			$stmt->bindParam(":id", $id);
+			return $stmt->execute();
 			if ($stmt->execute()) {
 				return $this->dbConn;
 			} else {
