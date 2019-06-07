@@ -134,19 +134,47 @@
 			$this->returnResponse(SUCCESS_RESPONSE, $message);
 		}
 
+		public function getAllCustomers() {
+			$customer = new Customer;
+			$data = [
+				'customers' => $customer->getAll()
+			];
+			$this->returnResponse(SUCCESS_RESPONSE, $data);
+		}
+
 		public function addCustomer() {
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
+			$surname = $this->validateParameter('surname', $this->param['surname'], STRING, false);
+			$function = $this->validateParameter('function', $this->param['function'], STRING, false);
+			$social_reason = $this->validateParameter('social_reason', $this->param['social_reason'], STRING, false);
+			$billing_address = $this->validateParameter('billing_address', $this->param['billing_address'], STRING, false);
+			$delivery_address = $this->validateParameter('delivery_address', $this->param['delivery_address'], STRING, false);
+			$zipcode = $this->validateParameter('zipcode', $this->param['zipcode'], STRING, false);
+			$city = $this->validateParameter('city', $this->param['city'], STRING, false);
+			$country = $this->validateParameter('country', $this->param['country'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
-			$addr = $this->validateParameter('addr', $this->param['addr'], STRING, false);
-			$mobile = $this->validateParameter('mobile', $this->param['mobile'], INTEGER, false);
+			$mobile_phone = $this->validateParameter('mobile_phone', $this->param['mobile_phone'], STRING, false);
+			$fixed_phone = $this->validateParameter('fixed_phone', $this->param['fixed_phone'], STRING, false);
+			$status = $this->validateParameter('status', $this->param['status'], STRING, false);
+			$comment = $this->validateParameter('comment', $this->param['comment'], STRING, false);
+			$create_date = $this->validateParameter('create_date', $this->param['create_date'], STRING, false);
 
 			$cust = new Customer;
 			$cust->setName($name);
+			$cust->setSurName($surname);
+			$cust->setFunction($function);
+			$cust->setSocialReason($social_reason);
+			$cust->setBillingAddress($billing_address);
+			$cust->setDeliveryAddress($delivery_address);
+			$cust->setZipcode($zipcode);
+			$cust->setCity($city);
+			$cust->setCountry($country);
 			$cust->setEmail($email);
-			$cust->setAddress($addr);
-			$cust->setMobile($mobile);
-			$cust->setCreatedBy($this->userId);
-			$cust->setCreatedOn(date('Y-m-d'));
+			$cust->setMobilePhone($mobile_phone);
+			$cust->setFixedPhone($fixed_phone);
+			$cust->setStatus($status);
+			$cust->setComment($comment);
+			$cust->setCreateDate(date('Y-m-d'));
 
 			if(!$cust->insert()) {
 				$message = 'Failed to insert.';
