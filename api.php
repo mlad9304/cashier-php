@@ -92,6 +92,41 @@
 			$this->returnResponse(SUCCESS_RESPONSE, $data);
 		}
 
+		public function updateUser() {
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER, false);
+			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
+			$surname = $this->validateParameter('surname', $this->param['surname'], STRING, false);
+			$address = $this->validateParameter('address', $this->param['address'], STRING, false);
+			$zipcode = $this->validateParameter('zipcode', $this->param['zipcode'], STRING, false);
+			$city = $this->validateParameter('city', $this->param['city'], STRING, false);
+			$phone = $this->validateParameter('phone', $this->param['phone'], STRING, false);
+			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
+			$password = $this->validateParameter('password', $this->param['password'], STRING, false);
+
+			$user = new User;
+			$user->setId($id);
+			$user->setName($name);
+			$user->setSurname($surname);
+			$user->setAddress($address);
+			$user->setZipcode($zipcode);
+			$user->setCity($city);
+			$user->setPhone($phone);
+			$user->setEmail($email);
+			$user->setPassword($password);
+
+			if($user->checkExist($email)) {
+				$this->throwError(USER_EXIST, "User aleady exist.");
+			}
+
+			if(!$user->update()) {
+				$message = 'Failed to insert.';
+			} else {
+				$message = "Registered successfully.";
+			}
+
+			$this->returnResponse(SUCCESS_RESPONSE, $message);
+		}
+
 		public function addCustomer() {
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);

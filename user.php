@@ -64,6 +64,25 @@
 			
 		}
 
+		public function update() {
+			$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
+			. " SET name = :name, surname = :surname, address = :address, zipcode = :zipcode, city = :city, phone = :phone, email = :email, password = :password WHERE id = :id");
+			$stmt->bindParam(":id", $id);
+			$stmt->bindParam(':name', $this->name);
+			$stmt->bindParam(':surname', $this->surname);
+			$stmt->bindParam(':address', $this->address);
+			$stmt->bindParam(':zipcode', $this->zipcode);
+			$stmt->bindParam(':city', $this->city);
+			$stmt->bindParam(':phone', $this->phone);
+			$stmt->bindParam(':email', $this->email);
+			$stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
+			if ($stmt->execute()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		public function insert() {
 			
 			$sql = 'INSERT INTO ' . $this->tableName . 
