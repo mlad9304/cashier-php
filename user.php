@@ -66,7 +66,7 @@
 
 		public function update() {
 			$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
-			. " SET name = :name, surname = :surname, address = :address, zipcode = :zipcode, city = :city, phone = :phone, email = :email WHERE id = :id");
+			. " SET `name` = :name, `surname` = :surname, `address` = :address, `zipcode` = :zipcode, `city` = :city, `phone` = :phone, `email` = :email WHERE id = :id");
 			$stmt->bindParam(":id", $id);
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':surname', $this->surname);
@@ -76,7 +76,7 @@
 			$stmt->bindParam(':phone', $this->phone);
 			$stmt->bindParam(':email', $this->email);
 			if ($stmt->execute()) {
-				return $stmt;
+				return true;
 			} else {
 				return false;
 			}
