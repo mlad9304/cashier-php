@@ -111,7 +111,6 @@
 			$user->setCity($city);
 			$user->setPhone($phone);
 			$user->setEmail($email);
-			$user->setPassword($password);
 
 			if(!$user->update()) {
 				$message = 'Failed to insert.';
