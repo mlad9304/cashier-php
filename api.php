@@ -176,6 +176,8 @@
 			$cust->setComment($comment);
 			$cust->setCreateDate(date('Y-m-d'));
 
+			$this->returnResponse(SUCCESS_RESPONSE, $cust);
+
 			if(!$cust->insert()) {
 				$message = 'Failed to insert.';
 			} else {
