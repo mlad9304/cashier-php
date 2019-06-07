@@ -131,8 +131,8 @@
 		}
 
 		public function delete() {
-			$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :userId');
-			$stmt->bindParam(':userId', $this->id);
+			$stmt = $this->dbConn->prepare('DELETE FROM ' . $this->tableName . ' WHERE id = :id');
+			$stmt->bindParam(':id', $this->id);
 			
 			if($stmt->execute()) {
 				return true;
