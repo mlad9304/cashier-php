@@ -64,6 +64,14 @@
 			return $customers;
 		}
 
+		public function getCustomer($id) {
+			$stmt = $this->dbConn->prepare("SELECT * FROM " . $this->tableName . " WHERE id = :id");
+			$stmt->bindParam(":id", $id);
+			$stmt->execute();
+			$user = $stmt->fetch(PDO::FETCH_ASSOC);
+			return $user;
+		}
+
 		public function getCustomerDetailsById() {
 
 			$sql = "SELECT 

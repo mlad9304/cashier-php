@@ -185,24 +185,13 @@
 			$this->returnResponse(SUCCESS_RESPONSE, $message);
 		}
 
-		public function getCustomerDetails() {
-			$customerId = $this->validateParameter('customerId', $this->param['customerId'], INTEGER);
-
-			$cust = new Customer;
-			$cust->setId($customerId);
-			$customer = $cust->getCustomerDetailsById();
-			if(!is_array($customer)) {
-				$this->returnResponse(SUCCESS_RESPONSE, ['message' => 'Customer details not found.']);
-			}
-
-			$response['customerId'] 	= $customer['id'];
-			$response['cutomerName'] 	= $customer['name'];
-			$response['email'] 			= $customer['email'];
-			$response['mobile'] 		= $customer['mobile'];
-			$response['address'] 		= $customer['address'];
-			$response['createdBy'] 		= $customer['created_user'];
-			$response['lastUpdatedBy'] 	= $customer['updated_user'];
-			$this->returnResponse(SUCCESS_RESPONSE, $response);
+		public function getCustomer() {
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER, false);
+			$user = new Customer;
+			$data = [
+				'customer' => $user->getCustomer($id)
+			];
+			$this->returnResponse(SUCCESS_RESPONSE, $data);
 		}
 
 		public function updateCustomer() {
