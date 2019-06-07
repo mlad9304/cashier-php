@@ -143,6 +143,7 @@
 		}
 
 		public function addCustomer() {
+			var_dump('aaa');
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
 			$surname = $this->validateParameter('surname', $this->param['surname'], STRING, false);
 			$func = $this->validateParameter('func', $this->param['func'], STRING, false);
