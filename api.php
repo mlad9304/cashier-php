@@ -240,10 +240,10 @@
 		}
 
 		public function deleteCustomer() {
-			$customerId = $this->validateParameter('customerId', $this->param['customerId'], INTEGER);
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER);
 
 			$cust = new Customer;
-			$cust->setId($customerId);
+			$cust->setId($id);
 
 			if(!$cust->delete()) {
 				$message = 'Failed to delete.';
