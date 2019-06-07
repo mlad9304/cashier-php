@@ -76,7 +76,7 @@
 			$stmt->bindParam(':phone', $this->phone);
 			$stmt->bindParam(':email', $this->email);
 			if ($stmt->execute()) {
-				return true;
+				return $stmt;
 			} else {
 				return false;
 			}
