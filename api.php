@@ -113,9 +113,9 @@
 			$user->setEmail($email);
 
 			if(!$user->update()) {
-				$message = 'Failed to insert.';
+				$message = 'Failed to update.';
 			} else {
-				$message = "Registered successfully.";
+				$message = "Updated successfully.";
 			}
 
 			$this->returnResponse(SUCCESS_RESPONSE, $message);
