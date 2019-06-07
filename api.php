@@ -112,13 +112,13 @@
 			$user->setPhone($phone);
 			$user->setEmail($email);
 
-			if(!$user->update()) {
-				$message = 'Failed to update.';
-			} else {
-				$message = "Updated successfully.";
-			}
+			// if(!$user->update()) {
+			// 	$message = 'Failed to update.';
+			// } else {
+			// 	$message = "Updated successfully.";
+			// }
 
-			$this->returnResponse(SUCCESS_RESPONSE, $message);
+			$this->returnResponse(SUCCESS_RESPONSE, $user->update());
 		}
 
 		public function addCustomer() {

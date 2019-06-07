@@ -76,7 +76,7 @@
 			$stmt->bindParam(':email', $this->email);
 			$stmt->bindParam(":id", $id);
 			if ($stmt->execute()) {
-				return true;
+				return $this->dbConn;
 			} else {
 				return false;
 			}
