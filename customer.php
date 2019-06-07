@@ -3,7 +3,7 @@
 		private $id;
 		private $name;
 		private $surname;
-		private $function;
+		private $func;
 		private $social_reason;
 		private $billing_address;
 		private $delivery_address;
@@ -25,8 +25,8 @@
 		function getName() { return $this->name; }
 		function setSurName($surname) { $this->surname = $surname; }
 		function getSurName() { return $this->surname; }
-		function setFunction($function) { $this->function = $function; }
-		function getFunction() { return $this->function; }
+		function setFunc($func) { $this->func = $func; }
+		function getFunc() { return $this->func; }
 		function setSocialReason($social_reason) { $this->social_reason = $social_reason; }
 		function getSocialReason() { return $this->social_reason; }
 		function setBillingAddress($billing_address) { $this->billing_address = $billing_address; }
@@ -87,13 +87,13 @@
 		public function insert() {
 			
 			$sql = 'INSERT INTO ' . $this->tableName . 
-			'(id, type, name, surname, function, social_reason, billing_address, delivery_address, zipcode, city, country, email, mobile_phone, fixed_phone, status, comment, create_date) VALUES '.
-			'(null, null, :name, :surname, :function, :social_reason, :billing_address, :delivery_address, :zipcode, :city, :country, :email, :mobile_phone, :fixed_phone, :status, :comment, :create_date)';
+			'(id, type, name, surname, func, social_reason, billing_address, delivery_address, zipcode, city, country, email, mobile_phone, fixed_phone, status, comment, create_date) VALUES '.
+			'(null, null, :name, :surname, :func, :social_reason, :billing_address, :delivery_address, :zipcode, :city, :country, :email, :mobile_phone, :fixed_phone, :status, :comment, :create_date)';
 
 			$stmt = $this->dbConn->prepare($sql);
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':surname', $this->surname);
-			$stmt->bindParam(':function', $this->function);
+			$stmt->bindParam(':func', $this->func);
 			$stmt->bindParam(':social_reason', $this->social_reason);
 			$stmt->bindParam(':billing_address', $this->billing_address);
 			$stmt->bindParam(':delivery_address', $this->delivery_address);

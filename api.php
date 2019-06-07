@@ -145,7 +145,7 @@
 		public function addCustomer() {
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
 			$surname = $this->validateParameter('surname', $this->param['surname'], STRING, false);
-			$function = $this->validateParameter('function', $this->param['function'], STRING, false);
+			$func = $this->validateParameter('func', $this->param['func'], STRING, false);
 			$social_reason = $this->validateParameter('social_reason', $this->param['social_reason'], STRING, false);
 			$billing_address = $this->validateParameter('billing_address', $this->param['billing_address'], STRING, false);
 			$delivery_address = $this->validateParameter('delivery_address', $this->param['delivery_address'], STRING, false);
@@ -162,7 +162,7 @@
 			$cust = new Customer;
 			$cust->setName($name);
 			$cust->setSurName($surname);
-			$cust->setFunction($function);
+			$cust->setFunc($func);
 			$cust->setSocialReason($social_reason);
 			$cust->setBillingAddress($billing_address);
 			$cust->setDeliveryAddress($delivery_address);
