@@ -101,7 +101,6 @@
 			$city = $this->validateParameter('city', $this->param['city'], STRING, false);
 			$phone = $this->validateParameter('phone', $this->param['phone'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
-			$password = $this->validateParameter('password', $this->param['password'], STRING, false);
 
 			$user = new User;
 			$user->setId($id);
@@ -113,10 +112,6 @@
 			$user->setPhone($phone);
 			$user->setEmail($email);
 			$user->setPassword($password);
-
-			if($user->checkExist($email)) {
-				$this->throwError(USER_EXIST, "User aleady exist.");
-			}
 
 			if(!$user->update()) {
 				$message = 'Failed to insert.';
