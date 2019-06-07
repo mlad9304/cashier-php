@@ -72,26 +72,6 @@
 			return $user;
 		}
 
-		public function getCustomerDetailsById() {
-
-			$sql = "SELECT 
-						c.*, 
-						u.name as created_user,
-						u1.name as updated_user
-					FROM customers c 
-						JOIN users u ON (c.created_by = u.id) 
-						LEFT JOIN users u1 ON (c.updated_by = u1.id) 
-					WHERE 
-						c.id = :customerId";
-
-			$stmt = $this->dbConn->prepare($sql);
-			$stmt->bindParam(':customerId', $this->id);
-			$stmt->execute();
-			$customer = $stmt->fetch(PDO::FETCH_ASSOC);
-			return $customer;
-		}
-		
-
 		public function insert() {
 			
 			$sql = 'INSERT INTO ' . $this->tableName . 
@@ -124,29 +104,26 @@
 
 		public function update() {
 			
-			$sql = "UPDATE $this->tableName SET";
-			if( null != $this->getName()) {
-				$sql .=	" name = '" . $this->getName() . "',";
-			}
-
-			if( null != $this->getAddress()) {
-				$sql .=	" address = '" . $this->getAddress() . "',";
-			}
-
-			if( null != $this->getMobile()) {
-				$sql .=	" mobile = " . $this->getMobile() . ",";
-			}
-
-			$sql .=	" updated_by = :updatedBy, 
-					  updated_on = :updatedOn
-					WHERE 
-						id = :userId";
-
-			$stmt = $this->dbConn->prepare($sql);
-			$stmt->bindParam(':userId', $this->id);
-			$stmt->bindParam(':updatedBy', $this->updatedBy);
-			$stmt->bindParam(':updatedOn', $this->updatedOn);
-			if($stmt->execute()) {
+			$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
+			. " SET name = :name, surname = :surname, func = :func, social_reason = :social_reason, billing_address = :billing_address, delivery_address = :delivery_address, zipcode = :zipcode".
+			", city = :city, country = :country, email = :email, mobile_phone = :mobile_phone, fixed_phone = :fixed_phone, status = :status, comment = :comment, created_date = :created_date  WHERE id = :id");
+			$stmt->bindParam(":id", $this->id);
+			$stmt->bindParam(':name', $this->name);
+			$stmt->bindParam(':surname', $this->surname);
+			$stmt->bindParam(':func', $this->func);
+			$stmt->bindParam(':social_reason', $this->social_reason);
+			$stmt->bindParam(':billing_address', $this->billing_address);
+			$stmt->bindParam(':delivery_address', $this->delivery_address);
+			$stmt->bindParam(':zipcode', $this->zipcode);
+			$stmt->bindParam(':city', $this->city);
+			$stmt->bindParam(':country', $this->country);
+			$stmt->bindParam(':email', $this->email);
+			$stmt->bindParam(':mobile_phone', $this->mobile_phone);
+			$stmt->bindParam(':fixed_phone', $this->fixed_phone);
+			$stmt->bindParam(':status', $this->status);
+			$stmt->bindParam(':comment', $this->comment);
+			$stmt->bindParam(':created_date', $this->created_date);
+			if ($stmt->execute()) {
 				return true;
 			} else {
 				return false;

@@ -195,18 +195,40 @@
 		}
 
 		public function updateCustomer() {
-			$customerId = $this->validateParameter('customerId', $this->param['customerId'], INTEGER);
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER);
 			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
-			$addr = $this->validateParameter('addr', $this->param['addr'], STRING, false);
-			$mobile = $this->validateParameter('mobile', $this->param['mobile'], INTEGER, false);
+			$surname = $this->validateParameter('surname', $this->param['surname'], STRING, false);
+			$func = $this->validateParameter('func', $this->param['func'], STRING, false);
+			$social_reason = $this->validateParameter('social_reason', $this->param['social_reason'], STRING, false);
+			$billing_address = $this->validateParameter('billing_address', $this->param['billing_address'], STRING, false);
+			$delivery_address = $this->validateParameter('delivery_address', $this->param['delivery_address'], STRING, false);
+			$zipcode = $this->validateParameter('zipcode', $this->param['zipcode'], STRING, false);
+			$city = $this->validateParameter('city', $this->param['city'], STRING, false);
+			$country = $this->validateParameter('country', $this->param['country'], STRING, false);
+			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
+			$mobile_phone = $this->validateParameter('mobile_phone', $this->param['mobile_phone'], STRING, false);
+			$fixed_phone = $this->validateParameter('fixed_phone', $this->param['fixed_phone'], STRING, false);
+			$status = $this->validateParameter('status', $this->param['status'], STRING, false);
+			$comment = $this->validateParameter('comment', $this->param['comment'], STRING, false);
+			$created_date = $this->validateParameter('created_date', $this->param['created_date'], STRING, false);
 
 			$cust = new Customer;
-			$cust->setId($customerId);
+			$cust->setId($id);
 			$cust->setName($name);
-			$cust->setAddress($addr);
-			$cust->setMobile($mobile);
-			$cust->setUpdatedBy($this->userId);
-			$cust->setUpdatedOn(date('Y-m-d'));
+			$cust->setSurName($surname);
+			$cust->setFunc($func);
+			$cust->setSocialReason($social_reason);
+			$cust->setBillingAddress($billing_address);
+			$cust->setDeliveryAddress($delivery_address);
+			$cust->setZipcode($zipcode);
+			$cust->setCity($city);
+			$cust->setCountry($country);
+			$cust->setEmail($email);
+			$cust->setMobilePhone($mobile_phone);
+			$cust->setFixedPhone($fixed_phone);
+			$cust->setStatus($status);
+			$cust->setComment($comment);
+			$cust->setCreatedDate(date('Y-m-d'));
 
 			if(!$cust->update()) {
 				$message = 'Failed to update.';
