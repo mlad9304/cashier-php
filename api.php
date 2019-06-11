@@ -103,7 +103,7 @@
 			$city = $this->validateParameter('city', $this->param['city'], STRING, false);
 			$phone = $this->validateParameter('phone', $this->param['phone'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
-			$group = $this->validateParameter('group', $this->param['group'], STRING, false);
+			$group = $this->param['group'] ? $this->validateParameter('group', $this->param['group'], INTEGER, false) : null;
 
 			$user = new User;
 			$user->setId($id);
