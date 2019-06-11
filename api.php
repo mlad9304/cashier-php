@@ -34,7 +34,8 @@
 					'token' => $token,
 					'name' => $user['name'],
 					'surname' => $user['surname'],
-					'email' => $user['email']
+					'email' => $user['email'],
+					'group' => $user['group']
 				];
 				$this->returnResponse(SUCCESS_RESPONSE, $data);
 			} catch (Exception $e) {
