@@ -103,7 +103,7 @@
 			$city = $this->validateParameter('city', $this->param['city'], STRING, false);
 			$phone = $this->validateParameter('phone', $this->param['phone'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
-			$groupId = $this->validateParameter('groupId', $this->param['groupId'], STRING, false);
+			$group = $this->validateParameter('group', $this->param['group'], STRING, false);
 
 			$user = new User;
 			$user->setId($id);
@@ -114,7 +114,7 @@
 			$user->setCity($city);
 			$user->setPhone($phone);
 			$user->setEmail($email);
-			$user->setGroup($groupId);
+			$user->setGroup($group);
 
 			if(!$user->update()) {
 				$message = 'Failed to update.';
