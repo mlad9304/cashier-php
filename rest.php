@@ -97,7 +97,7 @@
 				$api = new API;
 				$rMethod = new reflectionMethod('API', $this->serviceName);
 				if(!method_exists($api, $this->serviceName)) {
-					$this->throwError(API_DOST_NOT_EXIST, $this->serviceName);
+					$this->throwError(API_DOST_NOT_EXIST, "API does not exist.");
 				}
 				$rMethod->invoke($api);
 			} catch (Exception $e) {
