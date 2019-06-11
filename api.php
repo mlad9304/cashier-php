@@ -253,6 +253,74 @@
 
 			$this->returnResponse(SUCCESS_RESPONSE, $message);
 		}
+
+		public function getAllGroups() {
+			$group = new Group;
+			$data = [
+				'groups' => $group->getAll()
+			];
+			$this->returnResponse(SUCCESS_RESPONSE, $data);
+		}
+
+		public function addGroup() {
+			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
+
+			$group = new Group;
+			$group->setName($name);
+
+			if($group->checkExist($name)) {
+				$this->throwError(GROUP_EXIST, "Group aleady exist.");
+			}
+
+			if(!$group->insert()) {
+				$message = 'Failed to insert.';
+			} else {
+				$message = "Inserted successfully.";
+			}
+
+			$this->returnResponse(SUCCESS_RESPONSE, $message);
+		}
+
+		public function getGroup() {
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER, false);
+			$group = new Group;
+			$data = [
+				'group' => $group->getGroup($id)
+			];
+			$this->returnResponse(SUCCESS_RESPONSE, $data);
+		}
+
+		public function updateGroup() {
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER);
+			$name = $this->validateParameter('name', $this->param['name'], STRING, false);
+
+			$group = new Group;
+			$group->setId($id);
+			$group->setName($name);
+
+			if(!$group->update()) {
+				$message = 'Failed to update.';
+			} else {
+				$message = "Updated successfully.";
+			}
+
+			$this->returnResponse(SUCCESS_RESPONSE, $message);
+		}
+
+		public function deleteGroup() {
+			$id = $this->validateParameter('id', $this->param['id'], INTEGER);
+
+			$group = new Group;
+			$group->setId($id);
+
+			if(!$group->delete()) {
+				$message = 'Failed to delete.';
+			} else {
+				$message = "deleted successfully.";
+			}
+
+			$this->returnResponse(SUCCESS_RESPONSE, $message);
+		}
 	}
 	
  ?>

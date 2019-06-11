@@ -39,8 +39,8 @@
 		public function getAllUsers() {
 			$stmt = $this->dbConn->prepare("SELECT * FROM " . $this->tableName);
 			$stmt->execute();
-			$customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			return $customers;
+			$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $users;
 		}
 
 		public function getUser($id) {

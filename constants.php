@@ -20,6 +20,7 @@
 	define('INVALID_USER_PASS', 					108);
 	define('USER_NOT_ACTIVE', 						109);
 	define('USER_EXIST', 						    109);
+	define('GROUP_EXIST', 						    110);
 
 	define('SUCCESS_RESPONSE', 						200);
 
