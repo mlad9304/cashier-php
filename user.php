@@ -69,7 +69,7 @@
 
 		public function update() {
 			$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
-			. " SET name = :name, surname = :surname, address = :address, zipcode = :zipcode, city = :city, phone = :phone, email = :email, group = :group WHERE id = :id");
+			. " SET name = :name, surname = :surname, address = :address, zipcode = :zipcode, city = :city, phone = :phone, email = :email, `group` = :group WHERE id = :id");
 			$stmt->bindParam(":id", $this->id);
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':surname', $this->surname);
