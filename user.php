@@ -89,7 +89,7 @@
 		public function insert() {
 			
 			$sql = 'INSERT INTO ' . $this->tableName . 
-				'(id, name, surname, address, zipcode, city, phone, email, password) VALUES(null, :name, :surname, :address, :zipcode, :city, :phone, :email, :password)';
+				'(id, name, surname, address, zipcode, city, phone, email, password, `group`) VALUES(null, :name, :surname, :address, :zipcode, :city, :phone, :email, :password, :group)';
 
 			$stmt = $this->dbConn->prepare($sql);
 			$stmt->bindParam(':name', $this->name);
@@ -100,6 +100,7 @@
 			$stmt->bindParam(':phone', $this->phone);
 			$stmt->bindParam(':email', $this->email);
 			$stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
+			$stmt->bindParam(':group', $this->group);
 			
 			if($stmt->execute()) {
 				return true;
