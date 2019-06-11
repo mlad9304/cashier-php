@@ -77,8 +77,10 @@
 
 		public function getAllUsers() {
 			$user = new User;
+			$group = new Group;
 			$data = [
-				'users' => $user->getAllUsers()
+				'users' => $user->getAllUsers(),
+				'groups' => $group->getAll()
 			];
 			$this->returnResponse(SUCCESS_RESPONSE, $data);
 		}
