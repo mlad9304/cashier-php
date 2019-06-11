@@ -51,6 +51,7 @@
 			$phone = $this->validateParameter('phone', $this->param['phone'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
 			$password = $this->validateParameter('password', $this->param['password'], STRING, false);
+			$group = $this->param['group'] ? $this->validateParameter('group', $this->param['group'], INTEGER, false) : null;
 
 			$user = new User;
 			$user->setName($name);
@@ -61,6 +62,7 @@
 			$user->setPhone($phone);
 			$user->setEmail($email);
 			$user->setPassword($password);
+			$user->setGroup($group);
 
 			if($user->checkExist($email)) {
 				$this->throwError(USER_EXIST, "User aleady exist.");
