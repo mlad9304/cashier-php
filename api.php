@@ -168,6 +168,8 @@
 			$status = $this->validateParameter('status', $this->param['status'], STRING, false);
 			$comment = $this->validateParameter('comment', $this->param['comment'], STRING, false);
 			$created_date = $this->validateParameter('created_date', $this->param['created_date'], STRING, false);
+			$in_progress = 0;
+			$special_condition = $this->param['special_condition'];
 
 			$cust = new Customer;
 			$cust->setName($name);
@@ -188,6 +190,8 @@
 			$cust->setStatus($status);
 			$cust->setComment($comment);
 			$cust->setCreatedDate(date('Y-m-d'));
+			$cust->setInProgress($in_progress);
+			$cust->setSpecialCondition($special_condition);
 
 			if(!$cust->insert()) {
 				$message = 'Failed to insert.';
@@ -227,6 +231,8 @@
 			$status = $this->validateParameter('status', $this->param['status'], STRING, false);
 			$comment = $this->validateParameter('comment', $this->param['comment'], STRING, false);
 			$created_date = $this->validateParameter('created_date', $this->param['created_date'], STRING, false);
+			$in_progress = 0;
+			$special_condition = $this->param['special_condition'];
 
 			$cust = new Customer;
 			$cust->setId($id);
@@ -248,6 +254,8 @@
 			$cust->setStatus($status);
 			$cust->setComment($comment);
 			$cust->setCreatedDate(date('Y-m-d'));
+			$cust->setInProgress($in_progress);
+			$cust->setSpecialCondition($special_condition);
 
 			if(!$cust->update()) {
 				$message = 'Failed to update.';

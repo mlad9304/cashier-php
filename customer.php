@@ -19,6 +19,8 @@
 		private $status;
 		private $comment;
 		private $created_date;
+		private $in_progress;
+		private $special_condition;
 		private $tableName = 'customers';
 		private $dbConn;
 
@@ -60,6 +62,10 @@
 		function getComment() { return $this->comment; }
 		function setCreatedDate($created_date) { $this->created_date = $created_date; }
 		function getCreatedDate() { return $this->created_date; }
+		function setInProgress($in_progress) { $this->in_progress = $in_progress; }
+		function getInProgress() { return $this->in_progress; }
+		function setSpecialCondition($special_condition) { $this->special_condition = $special_condition; }
+		function getSpecialCondition() { return $this->special_condition; }
 
 		public function __construct() {
 			$db = new DbConnect();
@@ -84,8 +90,8 @@
 		public function insert() {
 			
 			$sql = 'INSERT INTO ' . $this->tableName . 
-			'(id, type, name, surname, func, social_reason, billing_address, delivery_address, zipcode_billing, city_billing, country_billing, zipcode_delivery, city_delivery, country_delivery, email, mobile_phone, fixed_phone, status, comment, created_date) VALUES '.
-			'(null, null, :name, :surname, :func, :social_reason, :billing_address, :delivery_address, :zipcode_billing, :city_billing, :country_billing, :zipcode_delivery, :city_delivery, :country_delivery, :email, :mobile_phone, :fixed_phone, :status, :comment, :created_date)';
+			'(id, type, name, surname, func, social_reason, billing_address, delivery_address, zipcode_billing, city_billing, country_billing, zipcode_delivery, city_delivery, country_delivery, email, mobile_phone, fixed_phone, status, comment, created_date, in_progress, special_condition) VALUES '.
+			'(null, null, :name, :surname, :func, :social_reason, :billing_address, :delivery_address, :zipcode_billing, :city_billing, :country_billing, :zipcode_delivery, :city_delivery, :country_delivery, :email, :mobile_phone, :fixed_phone, :status, :comment, :created_date, :in_progress, :special_condition)';
 
 			$stmt = $this->dbConn->prepare($sql);
 			$stmt->bindParam(':name', $this->name);
@@ -106,6 +112,8 @@
 			$stmt->bindParam(':status', $this->status);
 			$stmt->bindParam(':comment', $this->comment);
 			$stmt->bindParam(':created_date', $this->created_date);
+			$stmt->bindParam(':in_progress', $this->in_progress);
+			$stmt->bindParam(':special_condition', $this->in_progress);
 			
 			if($stmt->execute()) {
 				return true;
@@ -118,7 +126,7 @@
 			
 			$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
 			. " SET name = :name, surname = :surname, func = :func, social_reason = :social_reason, billing_address = :billing_address, delivery_address = :delivery_address, zipcode_billing = :zipcode_billing".
-			", city_billing = :city_billing, country_billing = :country_billing, zipcode_delivery = :zipcode_delivery, city_delivery = :city_delivery, country_delivery = :country_delivery, email = :email, mobile_phone = :mobile_phone, fixed_phone = :fixed_phone, status = :status, comment = :comment, created_date = :created_date  WHERE id = :id");
+			", city_billing = :city_billing, country_billing = :country_billing, zipcode_delivery = :zipcode_delivery, city_delivery = :city_delivery, country_delivery = :country_delivery, email = :email, mobile_phone = :mobile_phone, fixed_phone = :fixed_phone, status = :status, comment = :comment, created_date = :created_date, in_progress = :in_progress, special_condition = :special_condition WHERE id = :id");
 			$stmt->bindParam(":id", $this->id);
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':surname', $this->surname);
@@ -138,6 +146,8 @@
 			$stmt->bindParam(':status', $this->status);
 			$stmt->bindParam(':comment', $this->comment);
 			$stmt->bindParam(':created_date', $this->created_date);
+			$stmt->bindParam(':in_progress', $this->in_progress);
+			$stmt->bindParam(':special_condition', $this->in_progress);
 			if ($stmt->execute()) {
 				return true;
 			} else {
