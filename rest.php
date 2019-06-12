@@ -53,6 +53,7 @@
 					}
 					break;
 				case INTEGER:
+				case FLOAT:
 					if(!is_numeric($value)) {
 						$this->throwError(VALIDATE_PARAMETER_DATATYPE, "Datatype is not valid for " . $fieldName . '. It should be numeric.');
 					}

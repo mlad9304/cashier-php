@@ -169,7 +169,7 @@
 			$comment = $this->validateParameter('comment', $this->param['comment'], STRING, false);
 			$created_date = $this->validateParameter('created_date', $this->param['created_date'], STRING, false);
 			$in_progress = 0;
-			$special_condition = $this->param['special_condition'];
+			$special_condition = $this->validateParameter('special_condition', $this->param['special_condition'], FLOAT, false);
 
 			$cust = new Customer;
 			$cust->setName($name);
@@ -232,7 +232,7 @@
 			$comment = $this->validateParameter('comment', $this->param['comment'], STRING, false);
 			$created_date = $this->validateParameter('created_date', $this->param['created_date'], STRING, false);
 			$in_progress = 0;
-			$special_condition = $this->param['special_condition'];
+			$special_condition = $this->validateParameter('special_condition', $this->param['special_condition'], FLOAT, false);
 
 			$cust = new Customer;
 			$cust->setId($id);
