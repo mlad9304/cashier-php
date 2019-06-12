@@ -7,9 +7,12 @@
 		private $social_reason;
 		private $billing_address;
 		private $delivery_address;
-		private $zipcode;
-		private $city;
-		private $country;
+		private $zipcode_billing;
+		private $city_billing;
+		private $country_billing;
+		private $zipcode_delivery;
+		private $city_delivery;
+		private $country_delivery;
 		private $email;
 		private $mobile_phone;
 		private $fixed_phone;
@@ -33,12 +36,18 @@
 		function getBillingAddress() { return $this->billing_address; }
 		function setDeliveryAddress($delivery_address) { $this->delivery_address = $delivery_address; }
 		function getDeliveryAddress() { return $this->delivery_address; }
-		function setZipcode($zipcode) { $this->zipcode = $zipcode; }
-		function getZipcode() { return $this->zipcode; }
-		function setCity($city) { $this->city = $city; }
-		function getCity() { return $this->city; }
-		function setCountry($country) { $this->country = $country; }
-		function getCountry() { return $this->country; }
+		function setZipcodeBilling($zipcode_billing) { $this->zipcode_billing = $zipcode_billing; }
+		function getZipcodeBilling() { return $this->zipcode_billing; }
+		function setCityBilling($city_billing) { $this->city_billing = $city_billing; }
+		function getCityBilling() { return $this->city_billing; }
+		function setCountryBilling($country_billing) { $this->country_billing = $country_billing; }
+		function getCountryBilling() { return $this->country_billing; }
+		function setZipcodeDelivery($zipcode_delivery) { $this->zipcode_delivery = $zipcode_delivery; }
+		function getZipcodeDelivery() { return $this->zipcode_delivery; }
+		function setCityDelivery($city_delivery) { $this->city_delivery = $city_delivery; }
+		function getCityDelivery() { return $this->city_delivery; }
+		function setCountryDelivery($country_delivery) { $this->country_delivery = $country_delivery; }
+		function getCountryDelivery() { return $this->country_delivery; }
 		function setEmail($email) { $this->email = $email; }
 		function getEmail() { return $this->email; }
 		function setMobilePhone($mobile_phone) { $this->mobile_phone = $mobile_phone; }
@@ -75,8 +84,8 @@
 		public function insert() {
 			
 			$sql = 'INSERT INTO ' . $this->tableName . 
-			'(id, type, name, surname, func, social_reason, billing_address, delivery_address, zipcode, city, country, email, mobile_phone, fixed_phone, status, comment, created_date) VALUES '.
-			'(null, null, :name, :surname, :func, :social_reason, :billing_address, :delivery_address, :zipcode, :city, :country, :email, :mobile_phone, :fixed_phone, :status, :comment, :created_date)';
+			'(id, type, name, surname, func, social_reason, billing_address, delivery_address, zipcode_billing, city_billing, country_billing, zipcode_delivery, city_delivery, country_delivery, email, mobile_phone, fixed_phone, status, comment, created_date) VALUES '.
+			'(null, null, :name, :surname, :func, :social_reason, :billing_address, :delivery_address, :zipcode_billing, :city_billing, :country_billing, :zipcode_delivery, :city_delivery, :country_delivery, :email, :mobile_phone, :fixed_phone, :status, :comment, :created_date)';
 
 			$stmt = $this->dbConn->prepare($sql);
 			$stmt->bindParam(':name', $this->name);
@@ -85,9 +94,12 @@
 			$stmt->bindParam(':social_reason', $this->social_reason);
 			$stmt->bindParam(':billing_address', $this->billing_address);
 			$stmt->bindParam(':delivery_address', $this->delivery_address);
-			$stmt->bindParam(':zipcode', $this->zipcode);
-			$stmt->bindParam(':city', $this->city);
-			$stmt->bindParam(':country', $this->country);
+			$stmt->bindParam(':zipcode_billing', $this->zipcode_billing);
+			$stmt->bindParam(':city_billing', $this->city_billing);
+			$stmt->bindParam(':country_billing', $this->country_billing);
+			$stmt->bindParam(':zipcode_delivery', $this->zipcode_delivery);
+			$stmt->bindParam(':city_delivery', $this->city_delivery);
+			$stmt->bindParam(':country_delivery', $this->country_delivery);
 			$stmt->bindParam(':email', $this->email);
 			$stmt->bindParam(':mobile_phone', $this->mobile_phone);
 			$stmt->bindParam(':fixed_phone', $this->fixed_phone);
@@ -105,8 +117,8 @@
 		public function update() {
 			
 			$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
-			. " SET name = :name, surname = :surname, func = :func, social_reason = :social_reason, billing_address = :billing_address, delivery_address = :delivery_address, zipcode = :zipcode".
-			", city = :city, country = :country, email = :email, mobile_phone = :mobile_phone, fixed_phone = :fixed_phone, status = :status, comment = :comment, created_date = :created_date  WHERE id = :id");
+			. " SET name = :name, surname = :surname, func = :func, social_reason = :social_reason, billing_address = :billing_address, delivery_address = :delivery_address, zipcode_billing = :zipcode_billing".
+			", city_billing = :city_billing, country_billing = :country_billing, zipcode_delivery = :zipcode_delivery, city_delivery = :city_delivery, country_delivery = :country_delivery, email = :email, mobile_phone = :mobile_phone, fixed_phone = :fixed_phone, status = :status, comment = :comment, created_date = :created_date  WHERE id = :id");
 			$stmt->bindParam(":id", $this->id);
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':surname', $this->surname);
@@ -114,9 +126,12 @@
 			$stmt->bindParam(':social_reason', $this->social_reason);
 			$stmt->bindParam(':billing_address', $this->billing_address);
 			$stmt->bindParam(':delivery_address', $this->delivery_address);
-			$stmt->bindParam(':zipcode', $this->zipcode);
-			$stmt->bindParam(':city', $this->city);
-			$stmt->bindParam(':country', $this->country);
+			$stmt->bindParam(':zipcode_billing', $this->zipcode_billing);
+			$stmt->bindParam(':city_billing', $this->city_billing);
+			$stmt->bindParam(':country_billing', $this->country_billing);
+			$stmt->bindParam(':zipcode_delivery', $this->zipcode_delivery);
+			$stmt->bindParam(':city_delivery', $this->city_delivery);
+			$stmt->bindParam(':country_delivery', $this->country_delivery);
 			$stmt->bindParam(':email', $this->email);
 			$stmt->bindParam(':mobile_phone', $this->mobile_phone);
 			$stmt->bindParam(':fixed_phone', $this->fixed_phone);
