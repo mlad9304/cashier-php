@@ -113,7 +113,7 @@
 			$stmt->bindParam(':comment', $this->comment);
 			$stmt->bindParam(':created_date', $this->created_date);
 			$stmt->bindParam(':in_progress', $this->in_progress);
-			$stmt->bindParam(':special_condition', $this->in_progress);
+			$stmt->bindParam(':special_condition', $this->special_condition);
 			
 			if($stmt->execute()) {
 				return true;
@@ -147,7 +147,7 @@
 			$stmt->bindParam(':comment', $this->comment);
 			$stmt->bindParam(':created_date', $this->created_date);
 			$stmt->bindParam(':in_progress', $this->in_progress);
-			$stmt->bindParam(':special_condition', $this->in_progress);
+			$stmt->bindParam(':special_condition', $this->special_condition);
 			if ($stmt->execute()) {
 				return true;
 			} else {
