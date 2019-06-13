@@ -70,6 +70,11 @@
 		public function update() {
 			$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
 			. " SET name = :name, surname = :surname, address = :address, zipcode = :zipcode, city = :city, phone = :phone, email = :email, `group` = :group WHERE id = :id");
+			if ($this->password) {
+				$stmt = $this->dbConn->prepare("UPDATE " . $this->tableName 
+				. " SET name = :name, surname = :surname, address = :address, zipcode = :zipcode, city = :city, phone = :phone, email = :email, `group` = :group, password = :password WHERE id = :id");
+				$stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
+			}
 			$stmt->bindParam(":id", $this->id);
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':surname', $this->surname);

@@ -107,6 +107,7 @@
 			$phone = $this->validateParameter('phone', $this->param['phone'], STRING, false);
 			$email = $this->validateParameter('email', $this->param['email'], STRING, false);
 			$group = $this->param['group'] ? $this->validateParameter('group', $this->param['group'], INTEGER, false) : null;
+			$password = $this->param['password'] ? $this->validateParameter('password', $this->param['password'], STRING, false) : null;
 
 			$user = new User;
 			$user->setId($id);
@@ -118,6 +119,7 @@
 			$user->setPhone($phone);
 			$user->setEmail($email);
 			$user->setGroup($group);
+			$user->setPassword($password);
 
 			if(!$user->update()) {
 				$message = 'Failed to update.';
